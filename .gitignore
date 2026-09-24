@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# storyblok cli output
+.storyblok/logs/
+.storyblok/reports/
+.storyblok/components/
+.storyblok/stories/
