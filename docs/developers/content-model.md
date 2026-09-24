@@ -17,7 +17,7 @@ The menu uses a separate block for each level, instead of one block that can hol
 | 2. Column | `navigation-panel-column` | `heading`, `items` | `navigation-panel-item` |
 | 3. Link | `navigation-panel-item` | `label`, `link` | nothing |
 
-The common alternative is one `nav_item` block that can hold more `nav_item` blocks. That allows any number of levels, which helps when you don’t know how deep the menu will go. This team already knew: visitors didn’t use anything below the third level. So the model builds that limit in. The `navigation-panel-item` block has no `bloks` field, so an editor can’t add a fourth level.
+The common alternative is one `nav_item` block that can hold more `nav_item` blocks. That allows any number of levels, which helps when you don’t know how deep the menu will go. Here, the depth was already known: visitors didn’t use anything below the third level. So the model builds that limit in. The `navigation-panel-item` block has no `bloks` field, so an editor can’t add a fourth level.
 
 Separate blocks also give each level its own fields. A column has a heading. A top-level item has an optional landing page. With one repeating block, every level would show every field, even the ones that don’t apply to it.
 
