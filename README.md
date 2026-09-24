@@ -2,6 +2,9 @@
 
 > A demo project for a technical exam, not affiliated with Too Good To Go.
 
+- **Live site:** [too-good-to-go-demo-project-fawn.vercel.app](https://too-good-to-go-demo-project-fawn.vercel.app/)
+- **Tutorial:** [too-good-to-go-demo-project-fawn.vercel.app/docs](https://too-good-to-go-demo-project-fawn.vercel.app/docs)
+
 This project is a site inspired by Too Good To Go, with a header and footer that editors manage entirely in [Storyblok](https://www.storyblok.com). It includes a three-level primary navigation, a grouped footer, a newsletter call to action, and social media links. A Next.js App Router frontend renders the content, with live preview in the Storyblok Visual Editor.
 
 The content model is defined as TypeScript code and syncs to Storyblok through the Storyblok CLI. The schema caps the navigation at three levels, so editors control every link and label but can’t rebuild menu depth that nobody uses.
