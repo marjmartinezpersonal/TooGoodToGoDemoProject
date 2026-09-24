@@ -1,21 +1,23 @@
 # Manage the Schema as Code
 
-Block definitions usually live only in the Storyblok UI, which makes them hard to review, version, or copy between spaces. The [Storyblok CLI](https://www.storyblok.com/docs/libraries/storyblok-cli)’s `schema` command group moves them into TypeScript files in the repository:
+The **schema** is the list of blocks and their fields. Usually, you create and change it by hand in the Storyblok interface. That makes changes hard to review, hard to track, and hard to copy to another space. A **space** is one Storyblok project.
 
-- [`schema init`](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-init) generates TypeScript files from an existing space, once.
-- [`schema validate`](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-validate) checks those files offline, without an API call.
-- [`schema push --dry-run`](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-push) compares the files against a space and prints the difference.
-- [`schema push`](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-push) applies the difference.
+The [Storyblok CLI](https://www.storyblok.com/docs/libraries/storyblok-cli), Storyblok’s command-line tool, has a `schema` command that keeps the schema in TypeScript files in your code:
 
-## Bootstrap from an existing space
+- [`schema init`](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-init) creates the TypeScript files from an existing space. You run it once.
+- [`schema validate`](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-validate) checks the files for mistakes. It works offline.
+- [`schema push --dry-run`](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-push) compares the files with the space and shows what would change, without changing anything.
+- [`schema push`](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-push) applies the changes to the space.
 
-Run `schema init` once with the space ID from **Settings** → **Space**. The command writes one file per block into `.storyblok/schema/blocks`, one file for block folders, and an entry file, `schema.ts`, that registers everything:
+## Start from an existing space
+
+Run `schema init` once with the space ID from **Settings** → **Space**. It creates one file per block in `.storyblok/schema/blocks`, one file for block folders, and a main file, `schema.ts`, that lists everything:
 
 ```bash
 pnpm dlx storyblok@latest schema init --space <space-id>
 ```
 
-A dry run immediately after `init` reports every block as unchanged, which confirms that the local files match the space exactly:
+Right after `init`, a dry run reports every block as unchanged. That confirms the files match the space:
 
 ```text
 Summary: 15 unchanged
@@ -24,7 +26,7 @@ Summary: 15 unchanged
 
 ## Change the schema through code
 
-Every later change starts in a file. The [`@storyblok/schema` package](https://www.storyblok.com/docs/libraries/js/schema) provides [`defineBlock`](https://www.storyblok.com/docs/libraries/js/schema#defineblock) and [`defineField`](https://www.storyblok.com/docs/libraries/js/schema#definefield), and each field’s `type` decides which settings it accepts. The following block definition adds the newsletter call to action to the **Global** → **Footer** folder of the Block Library:
+From then on, every change starts in a file. The [`@storyblok/schema` package](https://www.storyblok.com/docs/libraries/js/schema) gives you two helpers, [`defineBlock`](https://www.storyblok.com/docs/libraries/js/schema#defineblock) and [`defineField`](https://www.storyblok.com/docs/libraries/js/schema#definefield). Each field’s `type` decides which settings it accepts. This block definition adds the newsletter to the **Global** → **Footer** folder in the Block Library:
 
 ```ts
 // .storyblok/schema/blocks/global/footer/newsletter.ts
@@ -50,7 +52,7 @@ export const newsletterBlock = defineBlock({
 });
 ```
 
-The project wraps the CLI in two `package.json` scripts, so the entry file path lives in one place:
+The project adds two scripts to `package.json`, so the path to the main file is written in one place:
 
 ```jsonc
 // package.json
@@ -63,14 +65,14 @@ The project wraps the CLI in two `package.json` scripts, so the entry file path 
 }
 ```
 
-Validate the change, then review the dry run before pushing:
+Check the change, then review the dry run before you push:
 
 ```bash
 pnpm schema:validate
 pnpm schema:push --space <space-id> --dry-run
 ```
 
-The dry run for the newsletter and social links change shows two new blocks and one updated content type:
+The dry run for adding the newsletter and social links shows two new blocks and one changed content type:
 
 ```text
   ~ global_settings (update)
@@ -85,11 +87,13 @@ The dry run for the newsletter and social links change shows two new blocks and 
 Summary: 2 to create, 1 to update, 15 unchanged
 ```
 
-The diff also documents how the TypeScript maps to Storyblok’s own settings. An `allow` list in code becomes [`component_whitelist` plus `restrict_components: true`](https://www.storyblok.com/docs/api/management/components/the-component-schema-field-object) in the space. Run the same command without `--dry-run` to apply it. The push never deletes a block that the local files omit unless the command includes `--delete`.
+The output also shows how the TypeScript turns into Storyblok settings. For example, an `allow` list in code becomes [`component_whitelist` plus `restrict_components: true`](https://www.storyblok.com/docs/api/management/components/the-component-schema-field-object) in the space. When the changes look right, run the same command without `--dry-run`. The push never deletes a block that’s missing from your files unless you add `--delete`.
 
-## Derive component types from the schema
+When a change removes a field, the push asks whether to create migration files, which are scripts that move old content to the new structure. If the field holds no content, add `--no-migrations` to skip the question.
 
-The generated entry file exports a [`Block` type](https://www.storyblok.com/docs/libraries/js/schema#typed-component-props) that derives a component’s props from its block definition. Each React component uses it instead of a hand-written interface:
+## Get TypeScript types from the schema
+
+The main schema file exports a [`Block` type](https://www.storyblok.com/docs/libraries/js/schema#typed-component-props). It creates a component’s props from its block definition, so you don’t write the types by hand:
 
 ```tsx
 // components/footer/Newsletter.tsx
@@ -100,6 +104,6 @@ export default function Newsletter({ blok }: { blok: Block<"newsletter"> }) {
 }
 ```
 
-A renamed or removed field in the schema now fails the type check in every component that reads it, before the change reaches the space.
+If someone renames or removes a field in the schema, TypeScript now shows an error in every component that uses it, before the change reaches the space.
 
 Next, [render the header and footer with Next.js](frontend.md).

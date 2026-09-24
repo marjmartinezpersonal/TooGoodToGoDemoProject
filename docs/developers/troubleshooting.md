@@ -1,74 +1,74 @@
 # Troubleshoot the Project
 
-The following problems came up while building this project, with their causes and fixes.
+These problems came up while building this project. Each section explains the cause and the fix.
 
 ## npm and npx commands fail in a pnpm project
 
-The project pins pnpm in `package.json` and commits `pnpm-lock.yaml`. Installing a package with npm in the same folder fails before it adds anything:
+This project uses pnpm. Installing a package with npm in the same folder fails before anything installs:
 
 ```text
 $ npm install @storyblok/react
 npm ERR! Cannot read properties of null (reading 'matches')
 ```
 
-pnpm builds `node_modules` from symbolic links into its own content-addressable store, and npm cannot read that layout when it tries to reconcile the existing tree. npm also ignores `pnpm-lock.yaml`, so even a successful npm install resolves different versions than the lockfile records.
+pnpm stores packages in its own layout, using shortcuts (symbolic links) to a shared folder, and npm can’t read that layout. npm also ignores `pnpm-lock.yaml`, so even when npm works, it installs different versions than the project expects.
 
-Swapping npm for npx produces a different error, because npx runs a package’s executable rather than installing anything:
+Using npx instead gives a different error. npx runs a package’s command, but it doesn’t install packages:
 
 ```text
 $ npx install @storyblok/react
 npm ERR! could not determine executable to run
 ```
 
-npx treats `install` as the name of a package to run, and no package with that executable exists in the project. Use the pnpm equivalent for each task:
+npx looks for a package called `install`, and there isn’t one. Use these pnpm commands instead:
 
 | Task | Command |
 |---|---|
-| Add a dependency | `pnpm add @storyblok/react` |
-| Add a development dependency | `pnpm add --save-dev storyblok` |
-| Run a CLI once without installing it | `pnpm dlx storyblok@latest schema init --space <space-id>` |
-| Run an installed CLI | `pnpm exec storyblok` or a `package.json` script |
+| Add a package | `pnpm add @storyblok/react` |
+| Add a package only needed during development | `pnpm add --save-dev storyblok` |
+| Run a command-line tool once without installing it | `pnpm dlx storyblok@latest schema init --space <space-id>` |
+| Run an installed command-line tool | `pnpm exec storyblok` or a `package.json` script |
 
-## The shell runs the wrong Node.js version
+## The terminal uses the wrong Node.js version
 
-The shell’s active Node.js version doesn’t follow the project automatically. The project’s `.nvmrc` requests Node.js 24 while the shell ran 20.9.0. Run `nvm use` in the project folder, then `corepack enable` so the pinned pnpm version runs.
+The terminal doesn’t switch Node.js versions by itself when you open the project. The project needs Node.js 24, but the terminal was running 20.9.0. In the project folder, run `nvm use`, then `corepack enable` so the right pnpm version runs.
 
-## The shell can’t find the `schema` command
+## The terminal can’t find the `schema` command
 
-The `schema` command is a subcommand of the [Storyblok CLI](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-validate), not a standalone program, so `schema validate` fails in the shell with `schema: command not found`. The `validate` and `push` subcommands also need the path to the entry file:
+`schema` is part of the [Storyblok CLI](https://www.storyblok.com/docs/libraries/storyblok-cli#schema-validate), not a separate program. Typing `schema validate` on its own fails with `schema: command not found`. Run it through the CLI instead, and include the path to the main schema file:
 
 ```bash
 pnpm exec storyblok schema validate .storyblok/schema/schema.ts
 ```
 
-The `pnpm schema:validate` script wraps the same command.
+The `pnpm schema:validate` script runs the same command.
 
 ## pnpm can’t find the `schema:push` script
 
-pnpm prints `ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL Command "schema:push" not found` when `package.json` has no script with that name. Add the two scripts from [Change the schema through code](schema-as-code.md#change-the-schema-through-code).
+pnpm shows `ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL Command "schema:push" not found` when `package.json` has no script with that name. Add the two scripts from [Change the schema through code](schema-as-code.md#change-the-schema-through-code).
 
 ## Every request fails despite a token in `.env`
 
-Next.js reads `.env.local` before `.env`, and the first value it finds for a variable wins, even an empty one. An empty `STORYBLOK_DELIVERY_API_TOKEN=` line in `.env.local` hides the real token in `.env`, and every request fails. Keep each variable in one file.
+Next.js reads `.env.local` before `.env`, and it uses the first value it finds, even an empty one. An empty `STORYBLOK_DELIVERY_API_TOKEN=` line in `.env.local` hides the real token in `.env`, so every request fails. Keep each setting in one file only.
 
 ## The homepage returns a 404 error
 
-The catch-all route loads a fixed slug for `/`. The Storyblok space named the story `homepage`, while the route first expected `home`. The `HOME_SLUG` constant in `lib/links.ts` now holds the slug in one place.
+The route loads a fixed story for `/`. The homepage story in Storyblok is called `homepage`, but the route first looked for `home`. The `HOME_SLUG` value in `lib/links.ts` now sets the name in one place.
 
 ## The development server refuses to start
 
-Next.js 16 refuses to start a second `next dev` process for the same project and prints `Another next dev server is already running`, with the running server’s port and process ID. Use the running server, or stop it before starting a new one.
+Next.js 16 doesn’t allow two `next dev` servers for the same project. It shows `Another next dev server is already running`, with the running server’s port and process ID. Use the server that’s already running, or stop it first.
 
 ## The Visual Editor shows a blank preview
 
-The Visual Editor loads the site inside an HTTPS page, so it cannot display `http://localhost:3000`. Serve the site over HTTPS instead:
+The Visual Editor is an HTTPS page, so it can’t show a site from `http://localhost:3000`. Run the site over HTTPS instead:
 
-1. Start the development server with `pnpm dev:https`, which runs `next dev --experimental-https`.
-2. Visit `https://localhost:3000` once to accept the self-signed certificate.
-3. Set **Settings** → **Visual Editor** → **Location** to `https://localhost:3000/`.
+1. Start the server with `pnpm dev:https`. This runs `next dev --experimental-https`.
+2. Open `https://localhost:3000` once and accept the browser’s certificate warning.
+3. In Storyblok, set **Settings** → **Visual Editor** → **Location** to `https://localhost:3000/`.
 
-For more detail, refer to Storyblok’s [Visual Preview in Next.js](https://www.storyblok.com/docs/guides/nextjs/visual-preview) guide.
+Storyblok’s [Visual Preview in Next.js](https://www.storyblok.com/docs/guides/nextjs/visual-preview) guide has more detail.
 
 ## The LinkedIn icon doesn’t exist
 
-The simple-icons package removed the LinkedIn logo at LinkedIn’s request, so `siLinkedin` doesn’t exist. The `platform` option list leaves LinkedIn out, which keeps every option paired with an icon.
+The simple-icons package removed the LinkedIn logo at LinkedIn’s request, so `siLinkedin` doesn’t exist. The `platform` list leaves LinkedIn out, so every option has an icon.

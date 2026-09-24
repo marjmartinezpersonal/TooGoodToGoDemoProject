@@ -1,26 +1,35 @@
 # Manage a Multi-Level Header and Footer in Storyblok with Next.js
 
-This project is a site inspired by Too Good To Go, with a header and footer that editors manage entirely in Storyblok. The tutorial builds that site-wide header and footer, including a three-level primary navigation, a grouped footer, a newsletter call to action, and social media links. The content model lives in TypeScript and syncs to Storyblok through the Storyblok CLI, and a Next.js App Router frontend renders it with live preview in the Visual Editor.
+This project is a website inspired by Too Good To Go. Its header and footer are managed in Storyblok, so editors can change them without asking a developer. The header has a menu with three levels. The footer has groups of links, a newsletter sign-up, and social media icons.
+
+This tutorial explains how the project works: how the content is set up in Storyblok, how editors change it, and how the website shows it with Next.js.
 
 ![The Too Good To Go homepage with the About menu open in the dark teal header, next to a Business menu. The About panel has two columns: The app, with the links “How to collect a Too Good to Go surprise bag?” and “How does the app work?,” and About us, with the links “About Too Good to Go” and “Our history.” An “Explore About” link closes the panel. Below the header, the hero reads “Save good food from going to waste” above a Download the app button. The footer lists About Us links for Careers, Press, and Support, and Legal links for Terms and Conditions, Privacy Policy, and Cookie Policy. Next to them, a Keep in touch section reads “Sign up to our Newsletter” above a Sign up button, followed by Instagram, Facebook, TikTok, and X icons.](images/finished-site.png)
 
-## The problem this model solves
+## The problem this project solves
 
-The model comes from a real migration. A high-traffic consumer platform was leaving a legacy CMS in which editors couldn’t change the navigation without an engineering ticket. Analytics showed that visitors almost never reached anything below the third level of the menu, so the team cut the dead branches and capped the primary navigation at three levels. The new model needed to give editors full control of the header and footer while making that three-level decision impossible to undo by accident.
+The idea comes from a real website that was moving to a new content system. In its old system, editors couldn’t change the menu on their own. They had to ask the engineering team every time.
 
-In the finished project, every link, label, and column is content. Editors change the navigation themselves, and the schema keeps the menu at three levels.
+The team also checked how visitors used the menu. Visitors almost never went past the third level, so the team removed the deeper levels and limited the menu to three.
+
+The new setup had two goals:
+
+- Editors can change every part of the header and footer themselves.
+- The menu can’t grow past three levels by accident.
+
+In this project, every link, label, and column in the header and footer is content that editors control, and Storyblok keeps the menu at three levels.
 
 ## Where to start
 
-The tutorial has one track per audience, so each reader only follows the pages that concern them.
+The tutorial has two parts. Read the part that matches your role.
 
 ### Content editors
 
-[Edit the header and footer in Storyblok](editors/edit-the-header-and-footer.md) covers every change an editor makes in Storyblok without any code: menu items, footer links, the newsletter, and social links.
+[Edit the header and footer in Storyblok](editors/edit-the-header-and-footer.md) shows how to change menu items, footer links, the newsletter, and social media links in Storyblok. You don’t need to write any code.
 
 ### Developers
 
-Read the developer pages in this order:
+The developer pages assume you know React and Next.js. Read them in this order:
 
 1. [Set up the project](developers/setup.md)
 2. [Design the content model](developers/content-model.md)

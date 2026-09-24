@@ -1,79 +1,101 @@
 # Edit the Header and Footer in Storyblok
 
-This guide is for content editors. It needs access to the Storyblok space and no code. The header and footer live in one story, **Global**, so every change you make there applies to every page on the site.
+This guide is for content editors. You don’t need to write any code. You only need access to the project in Storyblok.
+
+You’ll see a few Storyblok words in this guide:
+
+- A **story** is a piece of content in Storyblok, such as a page.
+- A **block** is one part of a story, such as a menu item or a footer column.
+- A **field** is a box you fill in on a block, such as a label or a link.
+
+The header and footer are saved in one story called **Global**. When you change it, the change shows on every page of the website.
 
 ## Open the Global story
 
-The Global story holds both the header and the footer:
+To start editing, open the Global story:
 
-1. In Storyblok, open **Content** and select the **Global** story.
-2. The Visual Editor opens with the editing form next to a live preview of the header and footer. Select any part of the preview to open its fields in the form.
+1. In Storyblok, select **Content** in the left menu.
+2. Select the **Global** story.
 
 ![The Content section of the TooGoodToGo space in Storyblok, opened from the left sidebar. The story list shows two stories: Homepage, of the content type Page, and Global, of the content type Global Settings.](../images/content-global-story.png)
 
-The form splits the fields into three tabs: **General** for the site title that appears in browser tabs, **Navigation** for the header, and **Footer** for the footer.
+Storyblok opens the story in the **Visual Editor**. On the left is a preview of the header and footer. On the right is the form where you make changes. Select any part of the preview, such as a menu item, and the form jumps to it.
+
+The form has three tabs:
+
+- **General:** the website name shown in the browser tab
+- **Navigation:** the header menu
+- **Footer:** the footer
 
 ![The Global story in the Visual Editor. Selecting About in the header preview opens its Navigation Button block in the form, with the Label “About,” a Link, and a Panel that holds two Navigation Panel Column blocks, The app and About Us. Opening the About Us column shows its Heading and Items fields. Selecting Business in the preview then switches the form to the Business block, whose Panel holds one column, Business Solutions, with a Navigation Panel Item for Marketplace surprise bags.](../images/visual-editor-navigation-trimmed.gif)
 
 ## Change the header menu
 
-The header menu has three levels:
+The header menu has three levels. Each level has its own block name in Storyblok:
 
-- A **top-level item**, the **Navigation Button** block, sits in the header bar, such as **About** or **Business**.
-- A **column**, the **Navigation Panel Column** block, groups related links in the item’s panel under a heading, such as **The app**.
-- A **link**, the **Navigation Panel Item** block, opens a page, such as **Our history**.
+| Level | What it is | Example | Block name |
+|---|---|---|---|
+| Main menu item | A word in the header bar | **About** | **Navigation Button** |
+| Column | A group of links in the dropdown menu, with a heading | **The app** | **Navigation Panel Column** |
+| Link | One link in a column | **Our history** | **Navigation Panel Item** |
 
-### Add a top-level item
+### Add a main menu item
 
-Each top-level item is a block in the navigation:
+Each main menu item is a block in the **Navigation** tab:
 
 1. On the **Navigation** tab, open the **Navigation** block.
-2. Add a block to **Buttons**. The block picker offers only **Navigation Button**.
-3. Enter the **Label** that appears in the header.
-4. Optional: set **Link** to the item’s landing page.
+2. Under **Buttons**, add a block. Storyblok offers one choice here: **Navigation Button**.
+3. In **Label**, type the text to show in the header.
+4. Optional: in **Link**, choose the page this item opens.
 
 ![The Global story in the Visual Editor with the Navigation block open in the form. The Buttons field lists Navigation Button blocks for About, Business, and Docs, followed by a new, empty Navigation Button. Its fields are open below the list: an empty Label, a Link set to Internal link, and a Panel.](../images/add-navigation-button.png)
 
-A top-level item without columns appears as a plain link in the header. Once it has a column, it opens a panel instead, and its **Link** becomes an “Explore” link at the bottom of the panel, such as **Explore About**.
+A main menu item without columns is a plain link. Once you add a column, the item opens a dropdown menu instead. If the item also has a link, the link shows at the bottom of the dropdown as “Explore” plus the item’s name, such as **Explore About**.
 
 ### Add columns and links
 
-Columns and links sit inside a top-level item:
+Columns and links go inside a main menu item:
 
-1. In the top-level item, add a block to **Panel** and enter the column’s **Heading**.
-2. In the column, add a block to **Items** for each link.
-3. Enter each link’s **Label** and **Link**.
+1. Open the main menu item.
+2. Under **Panel**, add a block. This is a column. In **Heading**, type the column’s title.
+3. Open the column. Under **Items**, add one block for each link.
+4. For each link, fill in **Label** (the text) and **Link** (where it goes).
 
-To reorder items, columns, or links, move their blocks in the form. The header shows them in the same order.
+To change the order of menu items, columns, or links, move their blocks up or down in the form. The header shows them in the same order.
 
 ## Set a link
 
-Every **Link** field accepts two link types. To switch between them, select the globe icon at the start of the field:
+Every **Link** field can point to one of two places. To choose, select the globe icon at the start of the field:
 
-- **A story from this space:** select the page to link to. The link stays correct after someone renames or moves that story.
-- **A URL:** enter a web address, such as `https://example.com`. The site adds `https://` when the address leaves it out.
+- **A page on this website:** choose the page from the list. If someone renames or moves that page later, the link still works.
+- **Another website:** type the web address, such as `https://example.com`. If you leave out `https://`, the website adds it for you.
 
 ## Edit the footer
 
-The **Footer** tab holds three fields:
+The **Footer** tab has three sections:
 
-- **Footer** holds the link columns. Each **Footer Column** block has a **Heading**, such as **Legal**, and one **Footer Link** block per link in **Items**, each with a **Label** and a **Link**.
-- **Newsletter** holds the newsletter section: a **Heading**, **Text**, a **Button Label**, and a **Button Link**. A new newsletter block arrives with the current copy prefilled, and the field accepts one block.
-- **Social Links** holds one **Social Link** block per icon. Choose the **Platform** and set **Link** to the profile page. The platform list offers Instagram, Facebook, TikTok, X, and YouTube.
+- **Footer:** the columns of links. Each **Footer Column** block has a **Heading**, such as **Legal**. Under **Items**, add one **Footer Link** block for each link, with a **Label** and a **Link**.
+- **Newsletter:** the newsletter sign-up. Fill in the **Heading**, the **Text**, the **Button Label** (the words on the button), and the **Button Link** (where the button goes). A new newsletter block starts with the current text already filled in. The footer has room for one newsletter.
+- **Social Links:** the social media icons. Add one **Social Link** block for each icon. Choose the **Platform**, such as Instagram, and add the profile address in **Link**. The list offers Instagram, Facebook, TikTok, X, and YouTube.
 
 ![The Global story in the Visual Editor on the Footer tab, next to the General and Navigation tabs. The form shows three fields: Footer, with Footer Column blocks for About Us, Legal, and Documentation; Newsletter, with one Newsletter block titled Keep in touch; and Social Links, with one Social Link block per platform, starting with Instagram. The preview on the left shows the same footer columns, the Keep in touch section with its Sign up button, and the social icons.](../images/footer-tab.png)
 
 ## Publish your changes
 
-The preview updates as you edit, but the live site shows only published content. Once the header and footer look right, select **Publish**. Every page picks up the change on its next load.
+The preview shows your changes as you work, but visitors don’t see them yet:
 
-## What the header and footer accept
+- Select **Save** to keep your work as a draft.
+- Select **Publish** to show your changes on the live website.
 
-The model only offers the blocks and values that the site can display:
+Visitors see the new header and footer the next time they open or reload a page.
 
-- Each field offers one block type, so every block lands at the right level.
-- Links in a column are the last level. The menu stops at three levels, because visitors of the old site rarely went deeper.
-- Menu links and footer links need both a **Label** and a **Link**, and social links need a **Platform** and a **Link**, so no entry appears empty or broken. A top-level item only needs a **Label**.
-- Every platform in the social links list has a matching icon. LinkedIn isn’t in the list, because the icon set doesn’t include its logo.
+## Rules that keep the header and footer working
 
-Developers can read how the schema enforces these rules in [Guardrails for editors](../developers/content-model.md#guardrails-for-editors).
+Storyblok only offers choices that the website can show:
+
+- Each section accepts one type of block, so every block ends up in the right place. For example, a footer link can’t go into the header menu.
+- The menu stops at three levels. Visitors of the old website rarely went deeper, so links in a column can’t hold more links.
+- Fields with a red star (*) are required. Links need a **Label** and a **Link**, and social media icons need a **Platform** and a **Link**, so nothing appears empty or broken. A main menu item only needs a **Label**.
+- LinkedIn isn’t in the social media list, because the icon set the website uses has no LinkedIn logo.
+
+Developers can read how these rules are set up in [Guardrails for editors](../developers/content-model.md#guardrails-for-editors).
