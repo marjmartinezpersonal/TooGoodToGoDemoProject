@@ -20,8 +20,5 @@ export const footerColumnBlock = defineBlock({
     defineField('heading', {
       type: 'text',
     }),
-    defineField('fallback_link', {
-      type: 'link',
-    }),
   ],
 });
