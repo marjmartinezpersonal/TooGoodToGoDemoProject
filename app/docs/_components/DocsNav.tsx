@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { docHref, type DocGroup } from "./pages";
-
-export type TocItem = { id: string; label: string };
+import type { TocItem } from "../_lib/headings";
+import { docHref, type DocGroup } from "../_lib/pages";
 
 // A heading counts as the current section once it scrolls within this distance of the top.
 const ACTIVE_OFFSET = 120;
