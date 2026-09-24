@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Too Good To Go Header and Footer
 
-## Getting Started
+This project is a site inspired by Too Good To Go, with a header and footer that editors manage entirely in [Storyblok](https://www.storyblok.com). It includes a three-level primary navigation, a grouped footer, a newsletter call to action, and social media links. A Next.js App Router frontend renders the content, with live preview in the Storyblok Visual Editor.
 
-First, run the development server:
+The content model is defined as TypeScript code and syncs to Storyblok through the Storyblok CLI. The schema caps the navigation at three levels, so editors control every link and label but can’t rebuild menu depth that nobody uses.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech stack
+
+- Next.js 16 with the App Router, React 19, and Tailwind CSS 4
+- [`@storyblok/react`](https://www.storyblok.com/docs/libraries/js/react-sdk) to fetch and render stories
+- [`@storyblok/schema`](https://www.storyblok.com/docs/libraries/js/schema) and the [Storyblok CLI](https://www.storyblok.com/docs/libraries/storyblok-cli) to manage the content model as code
+- Node.js 24 and pnpm 9
+
+## Folder structure
+
+```text
+.
+├── .storyblok/schema/   # The Storyblok content model as code
+│   ├── schema.ts        # Registers every block and folder
+│   ├── folders.ts       # Block Library folders (Global → Navigation, Footer)
+│   └── blocks/          # One file per block: page, hero, and global/*
+├── app/
+│   ├── [[...slug]]/     # Catch-all route that renders any Storyblok story
+│   ├── docs/            # Renders the tutorial in docs/ at /docs
+│   └── layout.tsx       # Root layout
+├── components/
+│   ├── navigation/      # Header and the three-level navigation
+│   ├── footer/          # Footer columns, newsletter, and social links
+│   ├── storyblok/       # Components mapped to Storyblok blocks
+│   └── StoryblokLink.tsx
+├── lib/
+│   ├── storyblok.ts     # SDK setup, block-to-component map, story fetching
+│   └── links.ts         # Resolves multilink fields to story paths and URLs
+├── docs/                # Tutorial for editors and developers
+└── public/              # Static assets such as the logo and hero image
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How Storyblok fits in
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Storyblok structures content as blocks. A content type is a block that stands alone as a story, and a nestable block only exists inside another block.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Pages.** Each page is a story of the `page` content type. The catch-all route in `app/[[...slug]]/page.tsx` fetches the story that matches the URL and renders it with `StoryblokStory`.
+- **Global settings.** The header and footer live in one story, `global`, of the `global_settings` content type. Every page reads this story, so a change to the navigation applies site-wide.
+- **Navigation.** One block per level keeps the menu at a fixed depth: `navigation` → `navigation-button` → `navigation-panel-column` → `navigation-panel-item`. The last level has no Blocks field, so a fourth level isn’t possible.
+- **Footer.** The footer is flat: `footer_column` blocks group `footer_link` blocks, and the `newsletter` and `social_link` blocks sit in their own fields.
+- **Links.** Every link field is a multilink field limited to internal stories and external URLs. `lib/links.ts` turns each one into a path or URL for the frontend.
+- **Content fetching.** `lib/storyblok.ts` fetches draft content in development and published content in production. It also maps each Storyblok block to its React component.
 
-## Learn More
+## Get started
 
-To learn more about Next.js, take a look at the following resources:
+1. Install the dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   nvm use
+   corepack enable
+   pnpm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Create a `.env` file in the project root with your space’s **Preview** access token and region:
 
-## Deploy on Vercel
+   ```bash
+   STORYBLOK_DELIVERY_API_TOKEN=your-preview-token
+   STORYBLOK_REGION=eu
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Start the development server with HTTPS, which the Visual Editor requires:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   pnpm dev:https
+   ```
+
+4. Visit `https://localhost:3000` and accept the self-signed certificate.
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `pnpm dev` | Starts the development server |
+| `pnpm dev:https` | Starts the development server with HTTPS for the Visual Editor |
+| `pnpm build` | Builds the site for production |
+| `pnpm start` | Serves the production build |
+| `pnpm lint` | Runs ESLint |
+| `pnpm schema:validate` | Validates the content model in `.storyblok/schema/schema.ts` |
+| `pnpm schema:push` | Pushes the content model to the Storyblok space |
+
+## Documentation
+
+The `docs/` folder holds a full tutorial with one track for content editors and one for developers. Start with the [tutorial overview](docs/README.md), or run the development server and open `/docs`.
+
+## Author
+
+Created by Marjorie Martinez.
