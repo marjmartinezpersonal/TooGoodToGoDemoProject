@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Children, isValidElement, type ReactNode } from "react";
 import { MarkdownAsync, type Components } from "react-markdown";
@@ -136,6 +137,12 @@ export default async function DocsPage({ params }: PageProps<"/docs/[[...slug]]"
   return (
     <main className="mx-auto grid w-full max-w-6xl gap-x-16 px-6 py-16 text-zinc-700 lg:grid-cols-[15rem_minmax(0,1fr)]">
       <aside>
+        <Link
+          href="/"
+          className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-zinc-600 hover:text-zinc-900"
+        >
+          <span aria-hidden="true">←</span> Back to home
+        </Link>
         <DocsNav groups={DOC_GROUPS} currentSlug={doc.slug} headings={getTocItems(markdown)} />
       </aside>
       <article className="max-w-3xl">
