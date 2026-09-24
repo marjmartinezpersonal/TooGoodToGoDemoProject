@@ -44,16 +44,10 @@ To reorder items, columns, or links, move their blocks in the form. The header s
 
 ## Set a link
 
-Every **Link** field accepts two link types:
+Every **Link** field accepts two link types. To switch between them, select the globe icon at the start of the field:
 
-- **Internal link:** select a story from the space. The link stays correct after someone renames or moves that story.
-- **External link:** enter a web address, such as `https://example.com`. The site adds `https://` when the address leaves it out.
-
-> **📸 Screenshot: the link field**
->
-> - **Capture:** in Storyblok, open the **Global** story, open any navigation link, and open the **Link** field’s type list so it shows only the story and URL options. Use a full browser tab.
-> - **Save as:** `docs/images/link-field-types.png`
-> - **Then replace this box with:** `![Complete sentences that name the field and both visible link types](../images/link-field-types.png)`
+- **A story from this space:** select the page to link to. The link stays correct after someone renames or moves that story.
+- **A URL:** enter a web address, such as `https://example.com`. The site adds `https://` when the address leaves it out.
 
 ## Edit the footer
 
