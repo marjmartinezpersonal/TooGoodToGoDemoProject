@@ -32,11 +32,7 @@ Each top-level item is a block in the navigation:
 3. Enter the **Label** that appears in the header.
 4. Optional: set **Link** to the item’s landing page.
 
-> **📸 Screenshot: adding a top-level item**
->
-> - **Capture:** in the **Global** story on the **Navigation** tab, open the **Navigation** block and start adding a block to **Buttons**, so the block picker shows **Navigation Button** as the only option. Use a full browser tab, with no annotations.
-> - **Save as:** `docs/images/add-navigation-button.png`
-> - **Then replace this box with:** `![Complete sentences that describe the Buttons field and the block picker with its single option](../images/add-navigation-button.png)`
+![The Global story in the Visual Editor with the Navigation block open in the form. The Buttons field lists Navigation Button blocks for About, Business, and Docs, followed by a new, empty Navigation Button. Its fields are open below the list: an empty Label, a Link set to Internal link, and a Panel.](../images/add-navigation-button.png)
 
 A top-level item without columns appears as a plain link in the header. Once it has a column, it opens a panel instead, and its **Link** becomes an “Explore” link at the bottom of the panel, such as **Explore About**.
 
