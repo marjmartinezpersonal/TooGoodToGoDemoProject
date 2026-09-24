@@ -14,7 +14,9 @@ You need these tools and accounts:
 
 ## Install the dependencies
 
-Use pnpm to install the packages. The project includes a `pnpm-lock.yaml` file that records the exact version of every package. npm and Yarn don’t read this file, so they would install different versions. [npm and npx commands fail in a pnpm project](troubleshooting.md#npm-and-npx-commands-fail-in-a-pnpm-project) explains what goes wrong. Run these commands:
+Use pnpm to install the packages. The project includes a `pnpm-lock.yaml` file that records the exact version of every package. npm and Yarn don’t read this file, so they would install different versions. [npm and npx commands fail in a pnpm project](troubleshooting.md#npm-and-npx-commands-fail-in-a-pnpm-project) explains what goes wrong.
+
+If you usually use npm, you don’t need to install pnpm yourself: `corepack enable` sets up the right version for you. Run these commands:
 
 ```bash
 nvm use

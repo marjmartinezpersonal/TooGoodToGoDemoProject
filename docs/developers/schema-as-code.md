@@ -11,7 +11,7 @@ The [Storyblok CLI](https://www.storyblok.com/docs/libraries/storyblok-cli), Sto
 
 ## Start from an existing space
 
-Run `schema init` once with the space ID from **Settings** → **Space**. It creates one file per block in `.storyblok/schema/blocks`, one file for block folders, and a main file, `schema.ts`, that lists everything:
+Run `schema init` once. Replace `<space-id>` with your space ID, from **Settings** → **Space**. It creates one file per block in `.storyblok/schema/blocks`, one file for block folders, and a main file, `schema.ts`, that lists everything:
 
 ```bash
 pnpm dlx storyblok@latest schema init --space <space-id>
