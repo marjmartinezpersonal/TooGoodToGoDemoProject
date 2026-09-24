@@ -45,3 +45,4 @@ next-env.d.ts
 .storyblok/reports/
 .storyblok/components/
 .storyblok/stories/
+.storyblok/schema
