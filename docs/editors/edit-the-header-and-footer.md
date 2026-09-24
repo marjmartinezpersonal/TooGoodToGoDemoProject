@@ -11,26 +11,22 @@ The Global story holds both the header and the footer:
 
 The form splits the fields into two tabs: **Navigation** for the header and **Footer** for the footer.
 
-> **📸 Screenshot: the navigation in the Visual Editor**
->
-> - **Capture:** in Storyblok, open the **Global** story in the Visual Editor on the **Navigation** tab, with the **About** panel open in the preview on the right. Use a full browser tab.
-> - **Save as:** `docs/images/visual-editor-navigation.png`
-> - **Then replace this box with:** `![Complete sentences that describe the editing form and the live preview](../images/visual-editor-navigation.png)`
+![The Global story in the Visual Editor. Selecting About in the header preview opens its Navigation Button block in the form, with the Label “About,” a Link, and a Panel that holds two Navigation Panel Column blocks, The app and About Us. Opening the About Us column shows its Heading and Items fields. Selecting Business in the preview then switches the form to the Business block, whose Panel holds one column, Business Solutions, with a Navigation Panel Item for Marketplace surprise bags.](../images/visual-editor-navigation-trimmed.gif)
 
 ## Change the header menu
 
 The header menu has three levels:
 
-- A **top-level item** sits in the header bar, such as **About** or **Business**.
-- A **column** groups related links in the item’s panel under a heading, such as **The app**.
-- A **link** in a column opens a page, such as **Our history**.
+- A **top-level item**, the **Navigation Button** block, sits in the header bar, such as **About** or **Business**.
+- A **column**, the **Navigation Panel Column** block, groups related links in the item’s panel under a heading, such as **The app**.
+- A **link**, the **Navigation Panel Item** block, opens a page, such as **Our history**.
 
 ### Add a top-level item
 
 Each top-level item is a block in the navigation:
 
-1. On the **Navigation** tab, open the navigation block.
-2. Add a block to **Buttons**. The block picker offers only the top-level item block.
+1. On the **Navigation** tab, open the **Navigation** block.
+2. Add a block to **Buttons**. The block picker offers only **Navigation Button**.
 3. Enter the **Label** that appears in the header.
 4. Optional: set **Link** to the item’s landing page.
 
@@ -63,7 +59,7 @@ Every **Link** field accepts two link types:
 
 The **Footer** tab holds three fields:
 
-- **Footer** holds the link columns. Each column has a **Heading**, such as **Legal**, and one block per link in **Items**, each with a **Label** and a **Link**.
+- **Footer** holds the link columns. Each **Footer Column** block has a **Heading**, such as **Legal**, and one **Footer Link** block per link in **Items**, each with a **Label** and a **Link**.
 - **Newsletter** holds the newsletter section: a **Heading**, **Text**, a **Button label**, and a **Button link**. A new newsletter block arrives with the current copy prefilled, and the field accepts one block.
 - **Social links** holds one block per icon. Choose the **Platform** and set **Link** to the profile page. The platform list offers Instagram, Facebook, TikTok, X, and YouTube.
 
