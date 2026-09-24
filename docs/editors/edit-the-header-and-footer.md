@@ -9,6 +9,8 @@ The Global story holds both the header and the footer:
 1. In Storyblok, open **Content** and select the **Global** story.
 2. The Visual Editor opens with the editing form next to a live preview of the header and footer. Select any part of the preview to open its fields in the form.
 
+![The Content section of the TooGoodToGo space in Storyblok, opened from the left sidebar. The story list shows two stories: Homepage, of the content type Page, and Global, of the content type Global Settings.](../images/content-global-story.png)
+
 The form splits the fields into two tabs: **Navigation** for the header and **Footer** for the footer.
 
 ![The Global story in the Visual Editor. Selecting About in the header preview opens its Navigation Button block in the form, with the Label “About,” a Link, and a Panel that holds two Navigation Panel Column blocks, The app and About Us. Opening the About Us column shows its Heading and Items fields. Selecting Business in the preview then switches the form to the Business block, whose Panel holds one column, Business Solutions, with a Navigation Panel Item for Marketplace surprise bags.](../images/visual-editor-navigation-trimmed.gif)
@@ -29,6 +31,12 @@ Each top-level item is a block in the navigation:
 2. Add a block to **Buttons**. The block picker offers only **Navigation Button**.
 3. Enter the **Label** that appears in the header.
 4. Optional: set **Link** to the item’s landing page.
+
+> **📸 Screenshot: adding a top-level item**
+>
+> - **Capture:** in the **Global** story on the **Navigation** tab, open the **Navigation** block and start adding a block to **Buttons**, so the block picker shows **Navigation Button** as the only option. Use a full browser tab, with no annotations.
+> - **Save as:** `docs/images/add-navigation-button.png`
+> - **Then replace this box with:** `![Complete sentences that describe the Buttons field and the block picker with its single option](../images/add-navigation-button.png)`
 
 A top-level item without columns appears as a plain link in the header. Once it has a column, it opens a panel instead, and its **Link** becomes an “Explore” link at the bottom of the panel, such as **Explore About**.
 
@@ -56,6 +64,12 @@ The **Footer** tab holds three fields:
 - **Footer** holds the link columns. Each **Footer Column** block has a **Heading**, such as **Legal**, and one **Footer Link** block per link in **Items**, each with a **Label** and a **Link**.
 - **Newsletter** holds the newsletter section: a **Heading**, **Text**, a **Button label**, and a **Button link**. A new newsletter block arrives with the current copy prefilled, and the field accepts one block.
 - **Social links** holds one block per icon. Choose the **Platform** and set **Link** to the profile page. The platform list offers Instagram, Facebook, TikTok, X, and YouTube.
+
+> **📸 Screenshot: the Footer tab**
+>
+> - **Capture:** in the **Global** story, open the **Footer** tab so the form shows the **Footer**, **Newsletter**, and **Social links** fields, with the footer visible in the preview. Use a full browser tab, with no annotations.
+> - **Save as:** `docs/images/footer-tab.png`
+> - **Then replace this box with:** `![Complete sentences that name the three footer fields and describe the footer in the preview](../images/footer-tab.png)`
 
 ## Publish your changes
 
