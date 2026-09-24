@@ -1,6 +1,6 @@
 # Manage a Multi-Level Header and Footer in Storyblok with Next.js
 
-This project is a website inspired by Too Good To Go. Its header and footer are managed in Storyblok, so editors can change them without asking a developer. The header has a menu with three levels. The footer has groups of links, a newsletter sign-up, and social media icons.
+This project is a demo website for a technical exam, inspired by Too Good To Go. It isn’t affiliated with Too Good To Go. Its header and footer are managed in Storyblok, so editors can change them without asking a developer. The header has a menu with three levels. The footer has groups of links, a newsletter sign-up, and social media icons.
 
 This tutorial explains how the project works: how the content is set up in Storyblok, how editors change it, and how the website shows it with Next.js.
 
@@ -8,9 +8,9 @@ This tutorial explains how the project works: how the content is set up in Story
 
 ## The problem this project solves
 
-The idea comes from a real website that was moving to a new content system. In its old system, editors couldn’t change the menu on their own. They had to ask the engineering team every time.
+The idea comes from a real website that was moving to a new content system. In its old system, editors couldn’t change the menu on their own. They had to ask a developer every time.
 
-The team also checked how visitors used the menu. Visitors almost never went past the third level, so the team removed the deeper levels and limited the menu to three.
+Before the move, the website’s menu went more than three levels deep: a menu item opened a list of links, and some of those links opened more lists of their own. The website’s visitor data showed that people almost never used the links below the third level. Those extra links still made the menu longer and harder to scan, and editors still had to keep them up to date. So the new menu stops at three levels: visitors get a shorter menu that’s faster to use, and editors have less to maintain.
 
 The new setup had two goals:
 

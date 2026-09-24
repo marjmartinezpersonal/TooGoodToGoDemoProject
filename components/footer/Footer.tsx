@@ -39,6 +39,10 @@ export default function Footer({ settings }: { settings: Block<"global_settings"
         {newsletter && <Newsletter blok={newsletter} />}
         {socialLinks.length > 0 && <SocialLinks links={socialLinks} />}
       </div>
+      {/* Lives in code, not Storyblok, so the disclaimer can't be removed by accident. */}
+      <p className="border-t border-zinc-200 px-6 py-4 text-center text-xs text-zinc-500">
+        A demo project for a technical exam, not affiliated with Too Good To Go.
+      </p>
     </footer>
   );
 }
