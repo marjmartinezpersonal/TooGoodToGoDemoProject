@@ -11,7 +11,7 @@ The Global story holds both the header and the footer:
 
 ![The Content section of the TooGoodToGo space in Storyblok, opened from the left sidebar. The story list shows two stories: Homepage, of the content type Page, and Global, of the content type Global Settings.](../images/content-global-story.png)
 
-The form splits the fields into two tabs: **Navigation** for the header and **Footer** for the footer.
+The form splits the fields into three tabs: **General** for the site title that appears in browser tabs, **Navigation** for the header, and **Footer** for the footer.
 
 ![The Global story in the Visual Editor. Selecting About in the header preview opens its Navigation Button block in the form, with the Label “About,” a Link, and a Panel that holds two Navigation Panel Column blocks, The app and About Us. Opening the About Us column shows its Heading and Items fields. Selecting Business in the preview then switches the form to the Business block, whose Panel holds one column, Business Solutions, with a Navigation Panel Item for Marketplace surprise bags.](../images/visual-editor-navigation-trimmed.gif)
 
@@ -58,14 +58,10 @@ Every **Link** field accepts two link types. To switch between them, select the 
 The **Footer** tab holds three fields:
 
 - **Footer** holds the link columns. Each **Footer Column** block has a **Heading**, such as **Legal**, and one **Footer Link** block per link in **Items**, each with a **Label** and a **Link**.
-- **Newsletter** holds the newsletter section: a **Heading**, **Text**, a **Button label**, and a **Button link**. A new newsletter block arrives with the current copy prefilled, and the field accepts one block.
-- **Social links** holds one block per icon. Choose the **Platform** and set **Link** to the profile page. The platform list offers Instagram, Facebook, TikTok, X, and YouTube.
+- **Newsletter** holds the newsletter section: a **Heading**, **Text**, a **Button Label**, and a **Button Link**. A new newsletter block arrives with the current copy prefilled, and the field accepts one block.
+- **Social Links** holds one **Social Link** block per icon. Choose the **Platform** and set **Link** to the profile page. The platform list offers Instagram, Facebook, TikTok, X, and YouTube.
 
-> **📸 Screenshot: the Footer tab**
->
-> - **Capture:** in the **Global** story, open the **Footer** tab so the form shows the **Footer**, **Newsletter**, and **Social links** fields, with the footer visible in the preview. Use a full browser tab, with no annotations.
-> - **Save as:** `docs/images/footer-tab.png`
-> - **Then replace this box with:** `![Complete sentences that name the three footer fields and describe the footer in the preview](../images/footer-tab.png)`
+![The Global story in the Visual Editor on the Footer tab, next to the General and Navigation tabs. The form shows three fields: Footer, with Footer Column blocks for About Us, Legal, and Documentation; Newsletter, with one Newsletter block titled Keep in touch; and Social Links, with one Social Link block per platform, starting with Instagram. The preview on the left shows the same footer columns, the Keep in touch section with its Sign up button, and the social icons.](../images/footer-tab.png)
 
 ## Publish your changes
 
